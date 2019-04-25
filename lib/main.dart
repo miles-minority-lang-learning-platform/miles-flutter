@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'tomato-agency/agency.dart';
 import 'tomato-agency/confirm_solo.dart';
+import 'tomato-agency/confirm_multi.dart';
 
 void main() => runApp(MyApp());
 
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
       routes: {
         "agency": (context) => AgencyPage(),
         "confirm_solo": (context) => ConfirmSoloPage(),
+        "confirm_multi": (context) => ConfirmMultiPage(),
       },
     );
   }

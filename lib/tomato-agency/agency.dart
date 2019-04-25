@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'confirm_solo.dart';
+import 'confirm_multi.dart';
 
 class AgencyPage extends StatelessWidget {
   @override
@@ -103,27 +104,48 @@ class AgencyPage extends StatelessWidget {
                         ),
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 20),
-                          child: Stack(
-                            alignment: Alignment.center,
-                            children: <Widget>[
-                              Container(
-                                padding: EdgeInsets.symmetric(
-                                  vertical: 60,
-                                ),
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Colors.white,
-                                ),
-                                child: SizedBox(
-                                  height: 120,
-                                  width: 120,
-                                ),
+                          child: InkWell(
+                            onTap: () => {
+                                  Navigator.push(context,
+                                      PageRouteBuilder(pageBuilder: (
+                                    BuildContext context,
+                                    Animation animation,
+                                    Animation secondaryAnimation,
+                                  ) {
+                                    return FadeTransition(
+                                      opacity: animation,
+                                      child: Scaffold(
+                                        body: ConfirmMultiPage(),
+                                      ),
+                                    );
+                                  }))
+                                },
+                            child: Hero(
+                              tag: "group",
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: <Widget>[
+                                  Container(
+                                    padding: EdgeInsets.symmetric(
+                                      vertical: 60,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: Colors.white,
+                                    ),
+                                    child: SizedBox(
+                                      height: 120,
+                                      width: 120,
+                                    ),
+                                  ),
+                                  Image(
+                                    image:
+                                        AssetImage("assets/images/group.png"),
+                                    height: 80,
+                                  ),
+                                ],
                               ),
-                              Image(
-                                image: AssetImage("assets/images/group.png"),
-                                height: 80,
-                              ),
-                            ],
+                            ),
                           ),
                         ),
                       ],
