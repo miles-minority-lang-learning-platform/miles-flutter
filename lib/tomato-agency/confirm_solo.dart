@@ -18,16 +18,7 @@ class ConfirmSoloPage extends StatelessWidget {
                     flex: 1,
                     child: InkWell(
                       onTap: () => {
-                            Navigator.pop(context,
-                                PageRouteBuilder(pageBuilder: (
-                              BuildContext context,
-                              Animation animation,
-                              Animation secondaryAnimation,
-                            ) {
-                              return FadeTransition(
-                                opacity: animation,
-                              );
-                            }))
+                            Navigator.pop(context)
                           },
                       child: Image(
                         image: AssetImage("assets/images/rollback.png"),
