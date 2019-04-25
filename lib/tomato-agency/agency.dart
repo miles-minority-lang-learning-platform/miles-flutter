@@ -17,14 +17,6 @@ class AgencyPage extends StatelessWidget {
                   children: <Widget>[
                     Expanded(
                       flex: 1,
-                      // child: IconButton(
-                      //   icon: Icon(
-                      //     Icons.menu,
-                      //     color: Colors.white,
-                      //     size: 30,
-                      //   ),
-                      //   onPressed: () {},
-                      // ),
                       child: Image(
                         image: AssetImage("assets/images/menu.png"),
                         color: Colors.white,
@@ -73,7 +65,7 @@ class AgencyPage extends StatelessWidget {
                                 ),
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
-                                  color: Colors.red[100],
+                                  color: Colors.white,
                                 ),
                                 child: SizedBox(
                                   height: 120,
@@ -98,7 +90,7 @@ class AgencyPage extends StatelessWidget {
                                 ),
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
-                                  color: Colors.red[100],
+                                  color: Colors.white,
                                 ),
                                 child: SizedBox(
                                   height: 120,
