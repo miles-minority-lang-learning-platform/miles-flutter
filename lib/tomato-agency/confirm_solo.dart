@@ -16,10 +16,24 @@ class ConfirmSoloPage extends StatelessWidget {
                 children: <Widget>[
                   Expanded(
                     flex: 1,
-                    child: Image(
-                      image: AssetImage("assets/images/rollback.png"),
-                      color: Colors.white,
-                      height: 30,
+                    child: InkWell(
+                      onTap: () => {
+                            Navigator.pop(context,
+                                PageRouteBuilder(pageBuilder: (
+                              BuildContext context,
+                              Animation animation,
+                              Animation secondaryAnimation,
+                            ) {
+                              return FadeTransition(
+                                opacity: animation,
+                              );
+                            }))
+                          },
+                      child: Image(
+                        image: AssetImage("assets/images/rollback.png"),
+                        color: Colors.white,
+                        height: 30,
+                      ),
                     ),
                   ),
                   Expanded(
@@ -47,27 +61,30 @@ class ConfirmSoloPage extends StatelessWidget {
             ),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 20),
-              child: Stack(
-                alignment: Alignment.center,
-                children: <Widget>[
-                  Container(
-                    padding: EdgeInsets.symmetric(
-                      vertical: 40,
+              child: Hero(
+                tag: "tomato",
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: <Widget>[
+                    Container(
+                      padding: EdgeInsets.symmetric(
+                        vertical: 40,
+                      ),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.white,
+                      ),
+                      child: SizedBox(
+                        height: 240,
+                        width: 240,
+                      ),
                     ),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.white,
+                    Image(
+                      image: AssetImage("assets/images/tomato.png"),
+                      height: 200,
                     ),
-                    child: SizedBox(
-                      height: 240,
-                      width: 240,
-                    ),
-                  ),
-                  Image(
-                    image: AssetImage("assets/images/tomato.png"),
-                    height: 200,
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
             Text(
