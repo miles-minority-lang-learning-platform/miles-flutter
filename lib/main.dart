@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'tomato-agency/agency.dart';
+import 'tomato-agency/confirm_solo.dart';
+import 'tomato-agency/confirm_multi.dart';
+import 'login-and-register/portal.dart';
 
 void main() => runApp(MyApp());
 
@@ -20,7 +24,14 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      // home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: ProtalPage(),
+      // home: ConfirmSoloPage(),
+      routes: {
+        "agency": (context) => AgencyPage(),
+        "confirm_solo": (context) => ConfirmSoloPage(),
+        "confirm_multi": (context) => ConfirmMultiPage(),
+      },
     );
   }
 }
