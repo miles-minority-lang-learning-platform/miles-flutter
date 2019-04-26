@@ -29,7 +29,7 @@ class LoginPage extends StatelessWidget {
         fontWeight: FontWeight.bold
       )
     ),
-    margin: EdgeInsets.fromLTRB(0, 100, 0, 50)
+    margin: EdgeInsets.fromLTRB(0, 90, 0, 40)
   );
 
   Widget _agreementDeclaration ()=> Container(
@@ -181,7 +181,7 @@ class _LoginFormState extends State<LoginForm> {
   );
 
   Widget _unreceivalbeCode() => Container(
-    margin: EdgeInsets.only(bottom: 50.0),
+    margin: EdgeInsets.only(bottom: 20.0),
     child: Align(
       alignment: Alignment.centerRight,
       child: FlatButton(
