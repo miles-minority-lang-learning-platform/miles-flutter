@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'tomato-agency/agency.dart';
 import 'tomato-agency/confirm_solo.dart';
 import 'tomato-agency/confirm_multi.dart';
-import 'login-and-register/protal.dart';
+import 'login-and-register/portal.dart';
 
 void main() => runApp(MyApp());
 
