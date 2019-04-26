@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'tomato-agency/agency.dart';
 import 'tomato-agency/confirm_solo.dart';
 import 'tomato-agency/confirm_multi.dart';
+import 'login-and-register/protal.dart';
 
 void main() => runApp(MyApp());
 
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       // home: MyHomePage(title: 'Flutter Demo Home Page'),
-      home: AgencyPage(),
+      home: ProtalPage(),
       // home: ConfirmSoloPage(),
       routes: {
         "agency": (context) => AgencyPage(),
