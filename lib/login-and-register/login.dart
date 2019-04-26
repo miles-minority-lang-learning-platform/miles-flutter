@@ -5,35 +5,35 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+      body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
             _titleSection(),
-            SizedBox(height: 70.0),
             LoginForm(),
-            SizedBox(height: 80.0),
             OtherLoginMethods(),
-            SizedBox(height: 80.0),
             _agreementDeclaration()
           ],
         ),
-      )
+      ),
     );
   }
 
-  Widget _titleSection ()=> Text(
-    "登录后开启小语种学习之旅",
-    style: TextStyle(
-      fontSize: 23.0,
-      color: Color.fromRGBO(234, 93, 92, 1),
-      fontFamily: "Segoe UI",
-      fontWeight: FontWeight.bold
-    )
+  Widget _titleSection ()=> Container(
+    child:Text(
+      "登录后开启小语种学习之旅",
+      style: TextStyle(
+        fontSize: 23.0,
+        color: Color.fromRGBO(234, 93, 92, 1),
+        fontFamily: "Segoe UI",
+        fontWeight: FontWeight.bold
+      )
+    ),
+    margin: EdgeInsets.fromLTRB(0, 100, 0, 50)
   );
 
   Widget _agreementDeclaration ()=> Container(
-    margin: EdgeInsets.only(bottom: 30.0),
+    margin: EdgeInsets.symmetric(vertical: 30.0),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
@@ -91,16 +91,16 @@ class _LoginFormState extends State<LoginForm> {
       child: Form(
       key: _formKey,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             Container(
               width: 280.0,
               child: Column(
-                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  SizedBox(height: 10.0),
                   _phoneSection(),
-                  SizedBox(height: 20.0),
+                  SizedBox(height: 15),
                   _verificationSection(),
                   _buttonSection(),
                   _unreceivalbeCode()
@@ -115,7 +115,7 @@ class _LoginFormState extends State<LoginForm> {
   
   Widget _phoneSection ()=> TextFormField(
     decoration: InputDecoration(
-      hintText: "+86  请输入手机号码"
+      hintText: "+86  请输入手机号码",
     ),
     validator: (String value){
       var phoneReg = RegExp(
@@ -126,6 +126,7 @@ class _LoginFormState extends State<LoginForm> {
       }
     },
     onSaved: (String value) => _phoneNumber = value,
+    maxLines: 1,
   );
 
   Widget _verificationSection()=> TextFormField(
@@ -150,6 +151,7 @@ class _LoginFormState extends State<LoginForm> {
         return "请先填入验证码";
       }
     },
+    maxLines: 1,
   );
 
   Widget _buttonSection ()=> Container(
@@ -179,6 +181,7 @@ class _LoginFormState extends State<LoginForm> {
   );
 
   Widget _unreceivalbeCode() => Container(
+    margin: EdgeInsets.only(bottom: 50.0),
     child: Align(
       alignment: Alignment.centerRight,
       child: FlatButton(
