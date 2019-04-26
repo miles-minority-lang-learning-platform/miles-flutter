@@ -23,7 +23,7 @@ class LoginPage extends StatelessWidget {
   }
 
   Widget _titleSection ()=> Text(
-    "登陆后开启小语种学习之旅",
+    "登录后开启小语种学习之旅",
     style: TextStyle(
       fontSize: 23.0,
       color: Color.fromRGBO(234, 93, 92, 1),
@@ -38,7 +38,7 @@ class LoginPage extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Text(
-          "登陆注册代表同意",
+          "登录注册代表同意",
           style: TextStyle(
             fontSize: 12.0,
             color: Color.fromRGBO(112, 112, 112, 1),
@@ -82,14 +82,14 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
-  // TODO : validator
-  // String _phoneNumber, _code;
-  // final _formKey = GlobalKey<FormState>();
+  String _phoneNumber, _code;
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Form(
-      // key: _formKey,
+      key: _formKey,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -114,14 +114,21 @@ class _LoginFormState extends State<LoginForm> {
   }
   
   Widget _phoneSection ()=> TextFormField(
-    // TODO : validator
     decoration: InputDecoration(
       hintText: "+86  请输入手机号码"
     ),
+    validator: (String value){
+      var phoneReg = RegExp(
+        r'^((13[0-9])|(14[0-9])|(15[0-9])|(16[0-9])|(17[0-9])|(18[0-9])|(19[0-9]))\d{8}$'
+      );
+      if (!phoneReg.hasMatch(value)) {
+        return '请先输入正确的电话号码';
+      }
+    },
+    onSaved: (String value) => _phoneNumber = value,
   );
 
   Widget _verificationSection()=> TextFormField(
-    // TODO : validator
     decoration: InputDecoration(
       hintText: "请输入验证码",
       suffix: GestureDetector(
@@ -132,10 +139,17 @@ class _LoginFormState extends State<LoginForm> {
             color: Color.fromRGBO(88, 155, 207, 1),
           )
         ),
-        // TODO : get the validator code from api
-        onTap: (){},
+        onTap: (){
+          // TODO : get the validator code from api
+        },
       )
     ),
+    onSaved: (String value) => _code = value,
+    validator: (String value){
+      if (value.isEmpty){
+        return "请先填入验证码";
+      }
+    },
   );
 
   Widget _buttonSection ()=> Container(
@@ -144,7 +158,7 @@ class _LoginFormState extends State<LoginForm> {
     margin: EdgeInsets.fromLTRB(0, 50, 0, 10),
     child: RaisedButton(
       child: Text(
-        "登陆",
+        "登录",
         style: TextStyle(
           fontSize: 23.0,
           color: Colors.white,
@@ -154,7 +168,13 @@ class _LoginFormState extends State<LoginForm> {
       ),
       color: Color.fromRGBO(234, 93, 92, 1),
       shape: StadiumBorder(),
-      onPressed: (){},
+      onPressed: () {
+        if (_formKey.currentState.validate()) {
+          _formKey.currentState.save();
+          // TODO : post the login or register information to api
+          print(_phoneNumber+" "+_code);
+        }
+      },
     ),
   );
 
@@ -201,7 +221,7 @@ class OtherLoginMethods extends StatelessWidget {
                 height: 30.0,
                 child: Center(
                   child: Text(
-                    "社交账号登陆",
+                    "社交账号登录",
                     style: TextStyle(
                       fontSize: 12.0,
                       color: Color.fromRGBO(112, 112, 112, 1),
