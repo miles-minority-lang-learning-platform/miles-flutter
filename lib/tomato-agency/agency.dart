@@ -59,27 +59,39 @@ class AgencyPage extends StatelessWidget {
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 20),
                           child: InkWell(
+                            // onTap: () => {
+                            //       Navigator.push(context,
+                            //           PageRouteBuilder(pageBuilder: (
+                            //         BuildContext context,
+                            //         Animation animation,
+                            //         Animation secondaryAnimation,
+                            //       ) {
+                            //         return FadeTransition(
+                            //           opacity: animation,
+                            //           child: Scaffold(
+                            //             body: ConfirmSoloPage(),
+                            //           ),
+                            //         );
+                            //       }))
+                            //     },
                             onTap: () => {
-                                  Navigator.push(context,
-                                      PageRouteBuilder(pageBuilder: (
-                                    BuildContext context,
-                                    Animation animation,
-                                    Animation secondaryAnimation,
-                                  ) {
-                                    return FadeTransition(
-                                      opacity: animation,
-                                      child: Scaffold(
-                                        body: ConfirmSoloPage(),
-                                      ),
-                                    );
-                                  }))
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (BuildContext context) {
+                                      return ConfirmSoloPage();
+                                    }),
+                                  )
                                 },
-                            child: Hero(
-                              tag: "tomato",
-                              child: Stack(
-                                alignment: Alignment.center,
-                                children: <Widget>[
-                                  Container(
+                            // child: Hero(
+                            // tag: "tomato",
+                            child: Stack(
+                              fit: StackFit.passthrough,
+                              alignment: Alignment.center,
+                              children: <Widget>[
+                                Hero(
+                                  tag: "tomato-circle",
+                                  child: Container(
                                     padding: EdgeInsets.symmetric(
                                       vertical: 60,
                                     ),
@@ -92,14 +104,18 @@ class AgencyPage extends StatelessWidget {
                                       width: 120,
                                     ),
                                   ),
-                                  Image(
+                                ),
+                                Hero(
+                                  tag: "tomato",
+                                  child: Image(
                                     image:
                                         AssetImage("assets/images/tomato.png"),
                                     height: 80,
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
+                            // ),
                           ),
                         ),
                         Container(
@@ -120,12 +136,12 @@ class AgencyPage extends StatelessWidget {
                                     );
                                   }))
                                 },
-                            child: Hero(
-                              tag: "group",
-                              child: Stack(
-                                alignment: Alignment.center,
-                                children: <Widget>[
-                                  Container(
+                            child: Stack(
+                              alignment: Alignment.center,
+                              children: <Widget>[
+                                Hero(
+                                  tag: "group-circle",
+                                  child: Container(
                                     padding: EdgeInsets.symmetric(
                                       vertical: 60,
                                     ),
@@ -138,13 +154,16 @@ class AgencyPage extends StatelessWidget {
                                       width: 120,
                                     ),
                                   ),
-                                  Image(
+                                ),
+                                Hero(
+                                  tag: "group",
+                                  child: Image(
                                     image:
                                         AssetImage("assets/images/group.png"),
                                     height: 80,
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                           ),
                         ),

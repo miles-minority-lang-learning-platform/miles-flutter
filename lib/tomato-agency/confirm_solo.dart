@@ -17,9 +17,7 @@ class ConfirmSoloPage extends StatelessWidget {
                   Expanded(
                     flex: 1,
                     child: InkWell(
-                      onTap: () => {
-                            Navigator.pop(context)
-                          },
+                      onTap: () => {Navigator.pop(context)},
                       child: Image(
                         image: AssetImage("assets/images/rollback.png"),
                         color: Colors.white,
@@ -52,12 +50,15 @@ class ConfirmSoloPage extends StatelessWidget {
             ),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 20),
-              child: Hero(
-                tag: "tomato",
-                child: Stack(
-                  alignment: Alignment.center,
-                  children: <Widget>[
-                    Container(
+              // child: Hero(
+              // tag: "tomato",
+              child: Stack(
+                fit: StackFit.passthrough,
+                alignment: Alignment.center,
+                children: <Widget>[
+                  Hero(
+                    tag: "tomato-circle",
+                    child: Container(
                       padding: EdgeInsets.symmetric(
                         vertical: 40,
                       ),
@@ -70,13 +71,17 @@ class ConfirmSoloPage extends StatelessWidget {
                         width: 240,
                       ),
                     ),
-                    Image(
+                  ),
+                  Hero(
+                    tag: "tomato",
+                    child: Image(
                       image: AssetImage("assets/images/tomato.png"),
                       height: 200,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
+              // ),
             ),
             Text(
               "25:00",
