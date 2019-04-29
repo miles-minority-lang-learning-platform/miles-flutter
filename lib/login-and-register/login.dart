@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:groovin_material_icons/groovin_material_icons.dart';
 import 'register-age.dart';
+import 'dart:async';
 
 class LoginPage extends StatelessWidget {
   @override
@@ -85,6 +86,28 @@ class LoginForm extends StatefulWidget {
 class _LoginFormState extends State<LoginForm> {
   String _phoneNumber, _code;
   final _formKey = GlobalKey<FormState>();
+  Timer _timer;
+  int _countdowntime = 0;
+
+  void updateTip(){
+    setState(() {
+      if (_countdowntime == 0) {
+        setState(() {
+        _countdowntime = 60;
+      });
+      var callback = (timer) => {
+        setState(() {
+          if (_countdowntime < 1) {
+            _timer.cancel();
+          } else {
+            _countdowntime = _countdowntime - 1;
+          }
+        })
+      };
+      _timer = Timer.periodic(Duration(seconds: 1), callback);
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -135,14 +158,17 @@ class _LoginFormState extends State<LoginForm> {
       hintText: "请输入验证码",
       suffix: GestureDetector(
         child: Text(
-          "获取验证码",
+           _countdowntime > 0 ? '已发送 $_countdowntime' : '获取验证码',
           style: TextStyle(
-            fontSize: 14.0,
-            color: Color.fromRGBO(88, 155, 207, 1),
+            fontSize: 15.0,
+            fontWeight: FontWeight.w600,
+            color: _countdowntime > 0
+              ? Colors.grey
+              : Color.fromRGBO(88, 155, 207, 1),
           )
         ),
         onTap: (){
-          // TODO : get the validator code from api
+          updateTip();
         },
       )
     ),
@@ -186,15 +212,18 @@ class _LoginFormState extends State<LoginForm> {
     margin: EdgeInsets.only(bottom: 20.0),
     child: Align(
       alignment: Alignment.centerRight,
-      child: FlatButton(
-        child: Text(
-          '收不到验证码？',
-          style: TextStyle(
-            fontSize: 14.0, 
-            color: Colors.grey
+      child: GestureDetector(
+        child: Container(
+          child: Text(
+            '收不到验证码？',
+            style: TextStyle(
+              fontSize: 14.0, 
+              color: Colors.grey
+            ),
           ),
+          padding: EdgeInsets.all(5.0),
         ),
-        onPressed: () {},
+        onTap: () {},
       ),
     ),
   );

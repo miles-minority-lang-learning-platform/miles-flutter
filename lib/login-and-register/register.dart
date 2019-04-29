@@ -164,7 +164,7 @@ class Registerhead extends StatelessWidget {
           fontWeight: FontWeight.bold
         ),
       ),
-      padding: EdgeInsets.all(25.0),
+      padding: EdgeInsets.only(top: 25.0,bottom: 15.0),
     );
   }
 }
@@ -236,7 +236,7 @@ class Registerbody extends StatelessWidget {
                   ),
                 ),
               ),
-              margin: EdgeInsets.symmetric(horizontal: 20.0,vertical: 3.0),
+              margin: EdgeInsets.symmetric(horizontal: 25.0,vertical: 3.0),
             );
           },
         )).toList(),
