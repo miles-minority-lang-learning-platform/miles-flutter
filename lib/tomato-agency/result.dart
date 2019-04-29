@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import '../config.dart';
 
 class ResultPage extends StatelessWidget {
   @override
   build(BuildContext context) => Scaffold(
         body: Container(
-          color: Colors.red[300],
+          color: agencyBgColor,
           child: Stack(
             children: <Widget>[
               SingleChildScrollView(

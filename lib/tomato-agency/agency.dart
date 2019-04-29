@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import '../config.dart';
+import 'confirm.dart';
 
 class Agency extends StatelessWidget {
   _topBar() => Container(
@@ -34,40 +35,35 @@ class Agency extends StatelessWidget {
         ),
       );
 
-  _choice(String image, BuildContext context, String heroTag) => Padding(
+  _choice(String image, String mode) => Padding(
         padding: EdgeInsets.symmetric(horizontal: 20),
-        child: InkWell(
-          onTap: (){
-            Navigator.pushNamed(context, "/tomato/solo");
-          },
-          child: Stack(
-            alignment: Alignment.center,
-            children: <Widget>[
-              Hero(
-                tag: heroTag + "_circle",
-                child: Container(
-                  padding: EdgeInsets.symmetric(
-                    vertical: 60,
-                  ),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.white,
-                  ),
-                  child: SizedBox(
-                    height: 120,
-                    width: 120,
-                  ),
+        child: Stack(
+          alignment: Alignment.center,
+          children: <Widget>[
+            Hero(
+              tag: mode + "_circle",
+              child: Container(
+                padding: EdgeInsets.symmetric(
+                  vertical: 60,
+                ),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.white,
+                ),
+                child: SizedBox(
+                  height: 120,
+                  width: 120,
                 ),
               ),
-              Hero(
-                tag: heroTag,
-                child: Image(
-                  image: AssetImage(image),
-                  height: 80,
-                ),
+            ),
+            Hero(
+              tag: mode,
+              child: Image(
+                image: AssetImage(image),
+                height: 80,
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       );
 
@@ -86,8 +82,26 @@ class Agency extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    _choice("assets/images/tomato.png", context, "tomato"),
-                    _choice("assets/images/group.png", context, "group"),
+                    InkWell(
+                      child: _choice("assets/images/tomato.png", "solo"),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    Confirm("solo")));
+                      },
+                    ),
+                    InkWell(
+                      child: _choice("assets/images/group.png", "multi"),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    Confirm("multi")));
+                      },
+                    ),
                   ],
                 )
               ],
@@ -99,7 +113,7 @@ class Agency extends StatelessWidget {
   @override
   build(BuildContext context) => Scaffold(
           body: Container(
-        color: Colors.red[300],
+        color: agencyBgColor,
         child: _home(context),
       ));
 }
