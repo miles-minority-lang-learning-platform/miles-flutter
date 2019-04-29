@@ -28,7 +28,7 @@ class ConfirmSoloPage extends StatelessWidget {
                   Expanded(
                     flex: 4,
                     child: Text(
-                      """一个人的学习之旅""",
+                      "一个人的学习之旅",
                       textAlign: TextAlign.center,
                       style: TextStyle(color: Colors.white, fontSize: 24),
                     ),
@@ -95,7 +95,9 @@ class ConfirmSoloPage extends StatelessWidget {
               height: 50,
               width: 120,
               child: RaisedButton(
-                onPressed: () => {},
+                onPressed: () => {
+                  Navigator.pushNamed(context, "/tomato/focus")
+                },
                 color: Colors.red[200],
                 textColor: Colors.white,
                 child: Text(

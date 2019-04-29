@@ -75,13 +75,14 @@ class AgencyPage extends StatelessWidget {
                             //       }))
                             //     },
                             onTap: () => {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (BuildContext context) {
-                                      return ConfirmSoloPage();
-                                    }),
-                                  )
+                                  // Navigator.push(
+                                  //   context,
+                                  //   MaterialPageRoute(
+                                  //       builder: (BuildContext context) {
+                                  //     return ConfirmSoloPage();
+                                  //   }),
+                                  // )
+                                  Navigator.pushNamed(context, "/tomato/solo")
                                 },
                             // child: Hero(
                             // tag: "tomato",

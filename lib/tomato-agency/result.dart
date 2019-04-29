@@ -66,7 +66,9 @@ class ResultPage extends StatelessWidget {
                   width: 240,
                   margin: EdgeInsets.only(bottom: 50),
                   child: RaisedButton(
-                    onPressed: () => {},
+                    onPressed: () => {
+                      Navigator.pushNamed(context, "/tomato")
+                    },
                     color: Colors.red[200],
                     textColor: Colors.white,
                     child: Text(

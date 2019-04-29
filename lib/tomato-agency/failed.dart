@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class FailPage extends StatelessWidget {
+class FailedPage extends StatelessWidget {
   @override
   build(BuildContext context) => Scaffold(
         body: Container(

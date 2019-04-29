@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
 
 class GivedUp extends StatelessWidget {
-  final Color bgColor;
-
-  GivedUp(this.bgColor);
-
   @override
   build(BuildContext context) => Scaffold(
         body: Container(
-          color: bgColor,
+          color: Colors.red[300],
           child: Stack(
             children: <Widget>[
               Center(
@@ -44,7 +40,9 @@ class GivedUp extends StatelessWidget {
                       width: 120,
                       margin: EdgeInsets.only(bottom: 50),
                       child: RaisedButton(
-                        onPressed: () => {},
+                        onPressed: () => {
+                          Navigator.pop(context)
+                        },
                         color: Colors.red[200],
                         textColor: Colors.white,
                         child: Text(
@@ -63,7 +61,9 @@ class GivedUp extends StatelessWidget {
                       width: 120,
                       margin: EdgeInsets.only(bottom: 50),
                       child: RaisedButton(
-                        onPressed: () => {},
+                        onPressed: () => {
+                          Navigator.pushNamed(context, "/tomato/result")
+                        },
                         color: Colors.grey,
                         textColor: Colors.white,
                         child: Text(

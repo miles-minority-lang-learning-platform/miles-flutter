@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 
 class TomatoPeriodSoloPage extends StatefulWidget {
@@ -36,7 +37,9 @@ class TomatoPeriodSoloState extends State<TomatoPeriodSoloPage> {
                   width: 120,
                   margin: EdgeInsets.only(bottom: 50),
                   child: RaisedButton(
-                    onPressed: () => {},
+                    onPressed: () => {
+                      Navigator.pushNamed(context, "/tomato/gived_up")
+                    },
                     color: Colors.red[200],
                     textColor: Colors.white,
                     child: Text(

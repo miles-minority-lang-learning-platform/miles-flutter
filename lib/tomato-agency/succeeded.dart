@@ -36,7 +36,9 @@ class SucceededPage extends StatelessWidget {
                       width: 120,
                       margin: EdgeInsets.only(bottom: 50),
                       child: RaisedButton(
-                        onPressed: () => {},
+                        onPressed: () => {
+                          Navigator.pushNamed(context, "/tomato/focus")
+                        },
                         color: Colors.red[200],
                         textColor: Colors.white,
                         child: Text(
@@ -55,7 +57,9 @@ class SucceededPage extends StatelessWidget {
                       width: 120,
                       margin: EdgeInsets.only(bottom: 50),
                       child: RaisedButton(
-                        onPressed: () => {},
+                        onPressed: () => {
+                          Navigator.pushNamed(context, "/tomato/result")
+                        },
                         color: Colors.red[200],
                         textColor: Colors.white,
                         child: Text(
