@@ -10,9 +10,12 @@ class FailPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Image.asset("assets/images/skeleton.png"),
-                Text(
-                  "你失败了...",
-                  style: TextStyle(color: Colors.white, fontSize: 24),
+                Container(
+                  margin: EdgeInsets.only(top: 20),
+                  child: Text(
+                    "你失败了...",
+                    style: TextStyle(color: Colors.white, fontSize: 24),
+                  ),
                 )
               ],
             ),
