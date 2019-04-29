@@ -7,6 +7,7 @@ import 'tomato-agency/tomato_period_solo.dart';
 import 'tomato-agency/failed.dart';
 import 'tomato-agency/gived_up.dart';
 import 'tomato-agency/succeeded.dart';
+import 'tomato-agency/result.dart';
 
 void main() => runApp(MyApp());
 
@@ -35,7 +36,8 @@ class MyApp extends StatelessWidget {
       // home: FailPage(),
       // home: ConfirmSoloPage(),
       // home: GivedUp(Colors.red[300]),
-      home: SucceededPage(),
+      // home: SucceededPage(),
+      home: ResultPage(),
       routes: {
         "agency": (context) => AgencyPage(),
         "confirm_solo": (context) => ConfirmSoloPage(),
