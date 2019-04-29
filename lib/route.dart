@@ -9,7 +9,7 @@ import 'tomato-agency/gived_up.dart';
 import 'tomato-agency/succeeded.dart';
 import 'tomato-agency/result.dart';
 
-Map routes(BuildContext context) => {
+routes(BuildContext context) => {
       "/tomato": (context) => AgencyPage(),
       "/tomato/solo": (context) => ConfirmSoloPage(),
       "/tomato/multi": (context) => ConfirmMultiPage(),
@@ -19,4 +19,5 @@ Map routes(BuildContext context) => {
       "/tomato/gived_up": (context) => GivedUp(),
       "/tomato/succeeded": (context) => SucceededPage(),
       "/tomato/result": (context) => ResultPage(),
+      
     };
