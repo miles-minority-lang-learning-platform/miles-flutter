@@ -54,6 +54,13 @@ flutter:
     - assets/images/tomato.png
     - assets/images/group.png
     - assets/images/rollback.png
+    - assets/images/skeleton.png
+    - assets/images/stop.png
+    - assets/images/break.png
+    - assets/images/time.png
+    - assets/images/multiply.png
+    - assets/images/exclamation.png
+    - assets/images/milestone.png
     - assets/images/protal.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
