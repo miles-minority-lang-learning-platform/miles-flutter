@@ -118,14 +118,14 @@ class _LoginFormState extends State<LoginForm> {
     decoration: InputDecoration(
       hintText: "+86  请输入手机号码",
     ),
-    validator: (String value){
-      var phoneReg = RegExp(
-        r'^((13[0-9])|(14[0-9])|(15[0-9])|(16[0-9])|(17[0-9])|(18[0-9])|(19[0-9]))\d{8}$'
-      );
-      if (!phoneReg.hasMatch(value)) {
-        return '请先输入正确的电话号码';
-      }
-    },
+    // validator: (String value){
+    //   var phoneReg = RegExp(
+    //     r'^((13[0-9])|(14[0-9])|(15[0-9])|(16[0-9])|(17[0-9])|(18[0-9])|(19[0-9]))\d{8}$'
+    //   );
+    //   if (!phoneReg.hasMatch(value)) {
+    //     return '请先输入正确的电话号码';
+    //   }
+    // },
     onSaved: (String value) => _phoneNumber = value,
     maxLines: 1,
   );
@@ -147,11 +147,11 @@ class _LoginFormState extends State<LoginForm> {
       )
     ),
     onSaved: (String value) => _code = value,
-    validator: (String value){
-      if (value.isEmpty){
-        return "请先填入验证码";
-      }
-    },
+    // validator: (String value){
+    //   if (value.isEmpty){
+    //     return "请先填入验证码";
+    //   }
+    // },
     maxLines: 1,
   );
 

@@ -57,7 +57,7 @@ class ConfirmSoloPage extends StatelessWidget {
                 alignment: Alignment.center,
                 children: <Widget>[
                   Hero(
-                    tag: "tomato-circle",
+                    tag: "tomato_circle",
                     child: Container(
                       padding: EdgeInsets.symmetric(
                         vertical: 40,
