@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class KeepFocusPage extends StatelessWidget {
+  @override
   build(BuildContext context) => Scaffold(
         body: Container(
           color: Colors.red[300],

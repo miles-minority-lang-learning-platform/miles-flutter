@@ -3,6 +3,7 @@ import 'tomato-agency/agency.dart';
 import 'tomato-agency/confirm_solo.dart';
 import 'tomato-agency/confirm_multi.dart';
 import 'tomato-agency/keep_focus.dart';
+import 'tomato-agency/tomato_period_solo.dart';
 
 void main() => runApp(MyApp());
 
@@ -26,7 +27,8 @@ class MyApp extends StatelessWidget {
       ),
       // home: MyHomePage(title: 'Flutter Demo Home Page'),
       // home: AgencyPage(),
-      home: KeepFocusPage(),
+      // home: KeepFocusPage(),
+      home: TomatoPeriodSoloPage(),
       // home: ConfirmSoloPage(),
       routes: {
         "agency": (context) => AgencyPage(),
