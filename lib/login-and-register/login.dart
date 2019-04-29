@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:groovin_material_icons/groovin_material_icons.dart';
+import 'register-age.dart';
 
 class LoginPage extends StatelessWidget {
   @override
@@ -175,6 +176,7 @@ class _LoginFormState extends State<LoginForm> {
           _formKey.currentState.save();
           // TODO : post the login or register information to api
           print(_phoneNumber+" "+_code);
+          Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterAgePage()));
         }
       },
     ),
