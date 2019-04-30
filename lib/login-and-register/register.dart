@@ -193,9 +193,9 @@ class Registerbody extends StatelessWidget {
                   }else if (pageId == '3') {
                     Navigator.of(context).push(CustomRoute(RegisterExperiencePage(age: age,language: item['msg'])));
                   }else if (pageId == '4') {
-                    // TODO：pass the parmas to api
+                    // TODO: pass the parmas to api
                     print("我是一个"+age+"的人，我想学"+ language +"。"+item['msg']+"。");
-                    // Navigator.of(context).push(CustomRoute((填入下一页的路由)));
+                    Navigator.pushNamed(context, "/tomato");
                   }
                 },
                 child: Card(
