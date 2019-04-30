@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../config.dart';
+import './period.dart';
 
 class Confirm extends StatefulWidget {
   final String mode;
@@ -116,7 +117,10 @@ class _ConfirmState extends State<Confirm> {
         height: 50,
         width: 120,
         child: RaisedButton(
-          onPressed: () => {Navigator.pushNamed(context, "/tomato/focus")},
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (BuildContext context) => Peroid()));
+          },
           color: Colors.red[200],
           textColor: Colors.white,
           child: Text(

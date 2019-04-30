@@ -1,24 +1,26 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import '../config.dart';
+import 'period.dart';
 
-class KeepFocusPage extends StatefulWidget {
+class Focus extends StatefulWidget {
   @override
-  createState() => KeepFocusState();
+  createState() => FocusState();
 }
 
-class KeepFocusState extends State<KeepFocusPage> {
+class FocusState extends State<Focus> {
   Timer _timer;
-  
+
   @override
   void initState() {
     super.initState();
     _timer = Timer(const Duration(seconds: 3), () {
-      Navigator.pushNamed(context, "/tomato/solo/period");
+      Navigator.push(context,
+          MaterialPageRoute(builder: (BuildContext context) => Peroid()));
     });
   }
 
-   @override
+  @override
   void dispose() {
     _timer.cancel();
     super.dispose();

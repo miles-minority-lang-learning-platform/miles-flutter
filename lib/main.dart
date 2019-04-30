@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'route.dart';
 import 'login-and-register/portal.dart';
 import 'tomato-agency/agency.dart'; 
 
@@ -14,7 +13,6 @@ class MyApp extends StatelessWidget {
 
         primarySwatch: Colors.blue,
       ),
-      routes: routes(context),
       // home: PortalPage(),
       home: Agency(),
       // home: ConfirmSoloPage(),

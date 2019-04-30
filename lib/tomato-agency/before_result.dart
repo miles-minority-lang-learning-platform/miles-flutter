@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import "../config.dart";
+import 'result.dart';
+import 'period.dart';
+import 'focus.dart';
 
 class BeforeResult extends StatefulWidget {
   final String status;
@@ -51,8 +54,12 @@ class _BeforeResultState extends State<BeforeResult> {
               width: 120,
               margin: EdgeInsets.only(bottom: 50),
               child: RaisedButton(
-                onPressed: () =>
-                    {Navigator.pushNamed(context, "/tomato/focus")},
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => Focus()));
+                },
                 color: Colors.red[200],
                 textColor: Colors.white,
                 child: Text(
@@ -71,8 +78,12 @@ class _BeforeResultState extends State<BeforeResult> {
               width: 120,
               margin: EdgeInsets.only(bottom: 50),
               child: RaisedButton(
-                onPressed: () =>
-                    {Navigator.pushNamed(context, "/tomato/result")},
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => ResultPage()));
+                },
                 color: Colors.red[200],
                 textColor: Colors.white,
                 child: Text(
@@ -95,7 +106,9 @@ class _BeforeResultState extends State<BeforeResult> {
               width: 120,
               margin: EdgeInsets.only(bottom: 50),
               child: RaisedButton(
-                onPressed: () => {Navigator.pop(context)},
+                onPressed: () {
+                  Navigator.pop(context);
+                },
                 color: Colors.red[200],
                 textColor: Colors.white,
                 child: Text(
@@ -114,8 +127,12 @@ class _BeforeResultState extends State<BeforeResult> {
               width: 120,
               margin: EdgeInsets.only(bottom: 50),
               child: RaisedButton(
-                onPressed: () =>
-                    {Navigator.pushNamed(context, "/tomato/result")},
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => ResultPage()));
+                },
                 color: Colors.grey,
                 textColor: Colors.white,
                 child: Text(
@@ -138,8 +155,12 @@ class _BeforeResultState extends State<BeforeResult> {
               width: 120,
               margin: EdgeInsets.only(bottom: 50),
               child: RaisedButton(
-                onPressed: () =>
-                    {Navigator.pushNamed(context, "/tomato/result")},
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => ResultPage()));
+                },
                 color: Colors.grey,
                 textColor: Colors.white,
                 child: Text(

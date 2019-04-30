@@ -3,30 +3,28 @@ import 'package:flutter/material.dart';
 import '../config.dart';
 import 'before_result.dart';
 
-class TomatoPeriodSoloPage extends StatefulWidget {
+class Peroid extends StatefulWidget {
   @override
-  createState() => TomatoPeriodSoloState();
+  createState() => PeroidState();
 }
 
-class TomatoPeriodSoloState extends State<TomatoPeriodSoloPage> {
+class PeroidState extends State<Peroid> {
   Color _bgColor;
   Timer _timer;
   Duration _currentTime;
 
-  timeFlows() => Timer.periodic(
-      Duration(seconds: 1),
-      (Timer timer) => setState(() {
-            if (_currentTime > Duration(seconds: 0)) {
-              _currentTime -= Duration(seconds: 1);
-            } else {
-              dispose();
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (BuildContext context) =>
-                          BeforeResult("success")));
-            }
-          }));
+  timeFlows() => Timer.periodic(Duration(seconds: 1), (Timer timer) {
+        if (_currentTime == Duration(seconds: 1)) {
+          _timer.cancel();
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (BuildContext context) => BeforeResult("success")));
+        }
+        setState(() {
+          _currentTime -= Duration(seconds: 1);
+        });
+      });
 
   @override
   void initState() {
@@ -45,12 +43,6 @@ class TomatoPeriodSoloState extends State<TomatoPeriodSoloPage> {
       _timer = timeFlows();
     }
     super.deactivate();
-  }
-
-  @override
-  void dispose() {
-    _timer.cancel();
-    super.dispose();
   }
 
   @override

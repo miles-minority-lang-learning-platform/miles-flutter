@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 import '../config.dart';
+import 'agency.dart';
 
-class ResultPage extends StatelessWidget {
+class ResultPage extends StatefulWidget {
+  @override
+  _ResultPageState createState() => _ResultPageState();
+}
+
+class _ResultPageState extends State<ResultPage> {
   _topBar() => Padding(
         padding: EdgeInsets.symmetric(
           vertical: 40,
@@ -37,7 +43,7 @@ class ResultPage extends StatelessWidget {
         _resultItem("assets/images/multiply.png", "连续学习奖励",
             "x" + _getBonus(clocks).toString()),
         _resultItem("assets/images/coin.png", "金币",
-            (clocks * 20 * _getBonus(clocks)).toInt().toString()),
+            (clocks * 10 * _getBonus(clocks)).toInt().toString()),
         _resultItem("assets/images/milestone.png", "里程",
             (2500 * clocks * _getBonus(clocks)).toInt().toString()),
         _resultItem("assets/images/exclamation.png", "触发事件", events.toString()),
@@ -52,7 +58,12 @@ class ResultPage extends StatelessWidget {
           width: 240,
           margin: EdgeInsets.only(bottom: 50),
           child: RaisedButton(
-            onPressed: () => {Navigator.pushNamed(context, "/tomato")},
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => Agency()));
+            },
             color: Colors.red[200],
             textColor: Colors.white,
             child: Text(
