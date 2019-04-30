@@ -1,5 +1,6 @@
-// import 'dart:async';
+import 'dart:async';
 import 'package:flutter/material.dart';
+import '../config.dart';
 
 class TomatoPeriodSoloPage extends StatefulWidget {
   @override
@@ -7,7 +8,45 @@ class TomatoPeriodSoloPage extends StatefulWidget {
 }
 
 class TomatoPeriodSoloState extends State<TomatoPeriodSoloPage> {
-  Color _bgColor = Colors.red[300];
+  Color _bgColor;
+  Timer _timer;
+  Duration _currentTime;
+
+  timeFlows() => Timer.periodic(
+      Duration(seconds: 1),
+      (Timer timer) => setState(() {
+            if (_currentTime > Duration(seconds: 0)) {
+              _currentTime -= Duration(seconds: 1);
+            } else {
+              dispose();
+              Navigator.pushNamed(context, "/tomato/succeeded");
+            }
+          }));
+
+  @override
+  void initState() {
+    super.initState();
+    _bgColor = agencyBgColor;
+    // _currentTime = Duration(minutes: 25);
+    _currentTime = Duration(seconds: 5);
+    _timer = timeFlows();
+  }
+
+  @override
+  void deactivate() {
+    if (_timer.isActive) {
+      _timer.cancel();
+    } else {
+      _timer = timeFlows();
+    }
+    super.deactivate();
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
+  }
 
   @override
   build(BuildContext context) => Scaffold(
@@ -20,7 +59,7 @@ class TomatoPeriodSoloState extends State<TomatoPeriodSoloPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Text(
-                      "24:59",
+                      _currentTime.toString().substring(2, 7),
                       style: TextStyle(color: Colors.white, fontSize: 60),
                     ),
                     Text(
@@ -37,9 +76,8 @@ class TomatoPeriodSoloState extends State<TomatoPeriodSoloPage> {
                   width: 120,
                   margin: EdgeInsets.only(bottom: 50),
                   child: RaisedButton(
-                    onPressed: () => {
-                      Navigator.pushNamed(context, "/tomato/gived_up")
-                    },
+                    onPressed: () =>
+                        {Navigator.pushNamed(context, "/tomato/gived_up")},
                     color: Colors.red[200],
                     textColor: Colors.white,
                     child: Text(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
+import '../config.dart';
 
 class KeepFocusPage extends StatefulWidget {
   @override
@@ -11,10 +12,8 @@ class KeepFocusState extends State<KeepFocusPage> {
   
   @override
   void initState() {
-    print("sadasdsaasdsadsa");
     super.initState();
     _timer = Timer(const Duration(seconds: 3), () {
-      print("sadasdsaasdsadsa");
       Navigator.pushNamed(context, "/tomato/solo/period");
     });
   }
@@ -28,7 +27,7 @@ class KeepFocusState extends State<KeepFocusPage> {
   @override
   build(BuildContext context) => Scaffold(
         body: Container(
-          color: Colors.red[300],
+          color: agencyBgColor,
           child: Center(
             child: Text(
               "保持专注 !",

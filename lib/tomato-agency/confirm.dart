@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import '../config.dart';
 
-class Confirm extends StatelessWidget {
+class Confirm extends StatefulWidget {
   final String mode;
-  List<Widget> _awardContent;
-  String _image;
 
   Confirm(this.mode);
+
+  @override
+  _ConfirmState createState() => _ConfirmState();
+}
+
+class _ConfirmState extends State<Confirm> {
+  List<Widget> _awardContent;
+  String _image;
 
   _topBar() => Container(
         height: 50,
@@ -56,7 +62,7 @@ class Confirm extends StatelessWidget {
         child: Column(
           children: <Widget>[
             Expanded(
-              flex: 7,
+              flex: 6,
               child: Container(
                 // padding: EdgeInsets.symmetric(horizontal: 20),
                 child: Stack(
@@ -64,7 +70,7 @@ class Confirm extends StatelessWidget {
                   alignment: Alignment.center,
                   children: <Widget>[
                     Hero(
-                      tag: mode + "_circle",
+                      tag: widget.mode + "_circle",
                       child: Container(
                         // padding: EdgeInsets.symmetric(
                         //   vertical: 40,
@@ -80,7 +86,7 @@ class Confirm extends StatelessWidget {
                       ),
                     ),
                     Hero(
-                      tag: mode,
+                      tag: widget.mode,
                       child: Image(
                         image: AssetImage(_image),
                         height: 200,
@@ -92,7 +98,7 @@ class Confirm extends StatelessWidget {
               ),
             ),
             Expanded(
-              flex: 3,
+              flex: 4,
               child: Text(
                 "25:00",
                 style: TextStyle(
@@ -122,7 +128,7 @@ class Confirm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    switch (mode) {
+    switch (widget.mode) {
       case "solo":
         _image = "assets/images/tomato.png";
         _awardContent = <Widget>[
