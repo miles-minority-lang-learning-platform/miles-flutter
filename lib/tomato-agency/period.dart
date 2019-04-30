@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import '../config.dart';
+import 'before_result.dart';
 
 class TomatoPeriodSoloPage extends StatefulWidget {
   @override
@@ -19,7 +20,11 @@ class TomatoPeriodSoloState extends State<TomatoPeriodSoloPage> {
               _currentTime -= Duration(seconds: 1);
             } else {
               dispose();
-              Navigator.pushNamed(context, "/tomato/succeeded");
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) =>
+                          BeforeResult("success")));
             }
           }));
 
@@ -76,8 +81,13 @@ class TomatoPeriodSoloState extends State<TomatoPeriodSoloPage> {
                   width: 120,
                   margin: EdgeInsets.only(bottom: 50),
                   child: RaisedButton(
-                    onPressed: () =>
-                        {Navigator.pushNamed(context, "/tomato/gived_up")},
+                    onPressed: () => {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      BeforeResult("interrupted")))
+                        },
                     color: Colors.red[200],
                     textColor: Colors.white,
                     child: Text(
