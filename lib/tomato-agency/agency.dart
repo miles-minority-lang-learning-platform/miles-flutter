@@ -1,180 +1,123 @@
 import 'package:flutter/material.dart';
-import 'confirm_solo.dart';
-import 'confirm_multi.dart';
 
-class AgencyPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-          color: Colors.red[300],
-          child: Column(
-            // mainAxisAlignment: MainAxisAlignment.center,
+
+class Agency extends StatelessWidget {
+  _topBar() => Container(
+        height: 50,
+        margin: EdgeInsets.only(top: 30),
+        child: Stack(
+          children: <Widget>[
+            Container(
+              padding: EdgeInsets.only(left: 10),
+              alignment: Alignment.centerLeft,
+              child: Image(
+                image: AssetImage("assets/images/menu.png"),
+                color: Colors.white,
+                height: 30,
+              ),
+            ),
+            Align(
+              alignment: Alignment.centerRight,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Image(
+                    image: AssetImage("assets/images/coin.png"),
+                    height: 35,
+                  ),
+                  CoinStatus()
+                ],
+              ),
+            )
+          ],
+        ),
+      );
+
+  _choice(String image, BuildContext context, String heroTag) => Padding(
+        padding: EdgeInsets.symmetric(horizontal: 20),
+        child: InkWell(
+          onTap: (){
+            Navigator.pushNamed(context, "/tomato/solo");
+          },
+          child: Stack(
+            alignment: Alignment.center,
             children: <Widget>[
-              Container(
-                margin: EdgeInsets.symmetric(
-                  vertical: 40,
-                ),
-                child: Row(
-                  children: <Widget>[
-                    Expanded(
-                      flex: 1,
-                      child: Image(
-                        image: AssetImage("assets/images/menu.png"),
-                        color: Colors.white,
-                        height: 30,
-                      ),
-                    ),
-                    Expanded(
-                      flex: 4,
-                      child: Container(),
-                    ),
-                    Expanded(
-                      flex: 2,
-                      child: Row(
-                        children: <Widget>[
-                          Image(
-                            image: AssetImage("assets/images/coin.png"),
-                            height: 35,
-                          ),
-                          CoinStatus()
-                        ],
-                      ),
-                    )
-                  ],
+              Hero(
+                tag: heroTag + "_circle",
+                child: Container(
+                  padding: EdgeInsets.symmetric(
+                    vertical: 60,
+                  ),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.white,
+                  ),
+                  child: SizedBox(
+                    height: 120,
+                    width: 120,
+                  ),
                 ),
               ),
-              Container(
-                padding: EdgeInsets.symmetric(vertical: 150),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: <Widget>[
-                    Text(
-                      "请选择学习模式",
-                      style: TextStyle(color: Colors.white, fontSize: 40),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Container(
-                          padding: EdgeInsets.symmetric(horizontal: 20),
-                          child: InkWell(
-                            onTap: () => {
-                                  Navigator.push(context,
-                                      PageRouteBuilder(pageBuilder: (
-                                    BuildContext context,
-                                    Animation animation,
-                                    Animation secondaryAnimation,
-                                  ) {
-                                    return FadeTransition(
-                                      opacity: animation,
-                                      child: Scaffold(
-                                        body: ConfirmSoloPage(),
-                                      ),
-                                    );
-                                  }))
-                                },
-                            child: Hero(
-                              tag: "tomato",
-                              child: Stack(
-                                alignment: Alignment.center,
-                                children: <Widget>[
-                                  Container(
-                                    padding: EdgeInsets.symmetric(
-                                      vertical: 60,
-                                    ),
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: Colors.white,
-                                    ),
-                                    child: SizedBox(
-                                      height: 120,
-                                      width: 120,
-                                    ),
-                                  ),
-                                  Image(
-                                    image:
-                                        AssetImage("assets/images/tomato.png"),
-                                    height: 80,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.symmetric(horizontal: 20),
-                          child: InkWell(
-                            onTap: () => {
-                                  Navigator.push(context,
-                                      PageRouteBuilder(pageBuilder: (
-                                    BuildContext context,
-                                    Animation animation,
-                                    Animation secondaryAnimation,
-                                  ) {
-                                    return FadeTransition(
-                                      opacity: animation,
-                                      child: Scaffold(
-                                        body: ConfirmMultiPage(),
-                                      ),
-                                    );
-                                  }))
-                                },
-                            child: Hero(
-                              tag: "group",
-                              child: Stack(
-                                alignment: Alignment.center,
-                                children: <Widget>[
-                                  Container(
-                                    padding: EdgeInsets.symmetric(
-                                      vertical: 60,
-                                    ),
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: Colors.white,
-                                    ),
-                                    child: SizedBox(
-                                      height: 120,
-                                      width: 120,
-                                    ),
-                                  ),
-                                  Image(
-                                    image:
-                                        AssetImage("assets/images/group.png"),
-                                    height: 80,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    )
-                  ],
+              Hero(
+                tag: heroTag,
+                child: Image(
+                  image: AssetImage(image),
+                  height: 80,
                 ),
               ),
             ],
-          )),
-    );
-  }
+          ),
+        ),
+      );
+
+  _home(BuildContext context) => Column(
+        children: <Widget>[
+          _topBar(),
+          Expanded(
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  "请选择学习模式",
+                  style: TextStyle(color: Colors.white, fontSize: 40),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    _choice("assets/images/tomato.png", context, "tomato"),
+                    _choice("assets/images/group.png", context, "group"),
+                  ],
+                )
+              ],
+            ),
+          ),
+        ],
+      );
+
+  @override
+  build(BuildContext context) => Scaffold(
+          body: Container(
+        color: Colors.red[300],
+        child: _home(context),
+      ));
 }
 
 class CoinStatus extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() {
-    return CoinStatusState();
-  }
+  createState() => CoinStatusState();
 }
 
 class CoinStatusState extends State<CoinStatus> {
+  int _coin = 20;
+
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10),
-      child: Text(
-        "20",
-        style: TextStyle(fontSize: 30, color: Colors.white),
-      ),
-    );
-  }
+  build(BuildContext a) => Container(
+        padding: EdgeInsets.symmetric(horizontal: 10),
+        child: Text(
+          _coin.toString(),
+          style: TextStyle(fontSize: 30, color: Colors.white),
+        ),
+      );
 }

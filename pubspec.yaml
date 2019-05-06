@@ -54,7 +54,30 @@ flutter:
     - assets/images/tomato.png
     - assets/images/group.png
     - assets/images/rollback.png
+    - assets/images/skeleton.png
+    - assets/images/stop.png
+    - assets/images/break.png
+    - assets/images/time.png
+    - assets/images/multiply.png
+    - assets/images/exclamation.png
+    - assets/images/milestone.png
     - assets/images/protal.png
+    - assets/images/treeman.png
+    - assets/images/ironman.png
+    - assets/images/captain.png
+    - assets/images/doctor.png
+    - assets/images/sanas.png
+    - assets/images/at.png
+    - assets/images/fd.png
+    - assets/images/fm.png
+    - assets/images/ot.png
+    - assets/images/sd.png
+    - assets/images/korea.png
+    - assets/images/germany.png
+    - assets/images/japan.png
+    - assets/images/french.png
+
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.

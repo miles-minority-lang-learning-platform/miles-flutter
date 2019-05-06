@@ -1,39 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:groovin_material_icons/groovin_material_icons.dart';
+import 'register-age.dart';
+import 'dart:async';
 
 class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+      body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
             _titleSection(),
-            SizedBox(height: 70.0),
             LoginForm(),
-            SizedBox(height: 80.0),
             OtherLoginMethods(),
-            SizedBox(height: 80.0),
             _agreementDeclaration()
           ],
         ),
-      )
+      ),
     );
   }
 
-  Widget _titleSection ()=> Text(
-    "登录后开启小语种学习之旅",
-    style: TextStyle(
-      fontSize: 23.0,
-      color: Color.fromRGBO(234, 93, 92, 1),
-      fontFamily: "Segoe UI",
-      fontWeight: FontWeight.bold
-    )
+  Widget _titleSection ()=> Container(
+    child:Text(
+      "登录后开启小语种学习之旅",
+      style: TextStyle(
+        fontSize: 23.0,
+        color: Color.fromRGBO(234, 93, 92, 1),
+        fontFamily: "Segoe UI",
+        fontWeight: FontWeight.bold
+      )
+    ),
+    margin: EdgeInsets.fromLTRB(0, 90, 0, 40)
   );
 
   Widget _agreementDeclaration ()=> Container(
-    margin: EdgeInsets.only(bottom: 30.0),
+    margin: EdgeInsets.symmetric(vertical: 30.0),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
@@ -84,6 +86,28 @@ class LoginForm extends StatefulWidget {
 class _LoginFormState extends State<LoginForm> {
   String _phoneNumber, _code;
   final _formKey = GlobalKey<FormState>();
+  Timer _timer;
+  int _countdowntime = 0;
+
+  void updateTip(){
+    setState(() {
+      if (_countdowntime == 0) {
+        setState(() {
+        _countdowntime = 60;
+      });
+      var callback = (timer) => {
+        setState(() {
+          if (_countdowntime < 1) {
+            _timer.cancel();
+          } else {
+            _countdowntime = _countdowntime - 1;
+          }
+        })
+      };
+      _timer = Timer.periodic(Duration(seconds: 1), callback);
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -91,16 +115,16 @@ class _LoginFormState extends State<LoginForm> {
       child: Form(
       key: _formKey,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             Container(
               width: 280.0,
               child: Column(
-                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  SizedBox(height: 10.0),
                   _phoneSection(),
-                  SizedBox(height: 20.0),
+                  SizedBox(height: 15),
                   _verificationSection(),
                   _buttonSection(),
                   _unreceivalbeCode()
@@ -115,17 +139,18 @@ class _LoginFormState extends State<LoginForm> {
   
   Widget _phoneSection ()=> TextFormField(
     decoration: InputDecoration(
-      hintText: "+86  请输入手机号码"
+      hintText: "+86  请输入手机号码",
     ),
-    validator: (String value){
-      var phoneReg = RegExp(
-        r'^((13[0-9])|(14[0-9])|(15[0-9])|(16[0-9])|(17[0-9])|(18[0-9])|(19[0-9]))\d{8}$'
-      );
-      if (!phoneReg.hasMatch(value)) {
-        return '请先输入正确的电话号码';
-      }
-    },
+    // validator: (String value){
+    //   var phoneReg = RegExp(
+    //     r'^((13[0-9])|(14[0-9])|(15[0-9])|(16[0-9])|(17[0-9])|(18[0-9])|(19[0-9]))\d{8}$'
+    //   );
+    //   if (!phoneReg.hasMatch(value)) {
+    //     return '请先输入正确的电话号码';
+    //   }
+    // },
     onSaved: (String value) => _phoneNumber = value,
+    maxLines: 1,
   );
 
   Widget _verificationSection()=> TextFormField(
@@ -133,23 +158,27 @@ class _LoginFormState extends State<LoginForm> {
       hintText: "请输入验证码",
       suffix: GestureDetector(
         child: Text(
-          "获取验证码",
+           _countdowntime > 0 ? '已发送 $_countdowntime' : '获取验证码',
           style: TextStyle(
-            fontSize: 14.0,
-            color: Color.fromRGBO(88, 155, 207, 1),
+            fontSize: 15.0,
+            fontWeight: FontWeight.w600,
+            color: _countdowntime > 0
+              ? Colors.grey
+              : Color.fromRGBO(88, 155, 207, 1),
           )
         ),
         onTap: (){
-          // TODO : get the validator code from api
+          updateTip();
         },
       )
     ),
     onSaved: (String value) => _code = value,
-    validator: (String value){
-      if (value.isEmpty){
-        return "请先填入验证码";
-      }
-    },
+    // validator: (String value){
+    //   if (value.isEmpty){
+    //     return "请先填入验证码";
+    //   }
+    // },
+    maxLines: 1,
   );
 
   Widget _buttonSection ()=> Container(
@@ -173,23 +202,28 @@ class _LoginFormState extends State<LoginForm> {
           _formKey.currentState.save();
           // TODO : post the login or register information to api
           print(_phoneNumber+" "+_code);
+          Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterAgePage()));
         }
       },
     ),
   );
 
   Widget _unreceivalbeCode() => Container(
+    margin: EdgeInsets.only(bottom: 20.0),
     child: Align(
       alignment: Alignment.centerRight,
-      child: FlatButton(
-        child: Text(
-          '收不到验证码？',
-          style: TextStyle(
-            fontSize: 14.0, 
-            color: Colors.grey
+      child: GestureDetector(
+        child: Container(
+          child: Text(
+            '收不到验证码？',
+            style: TextStyle(
+              fontSize: 14.0, 
+              color: Colors.grey
+            ),
           ),
+          padding: EdgeInsets.all(5.0),
         ),
-        onPressed: () {},
+        onTap: () {},
       ),
     ),
   );
