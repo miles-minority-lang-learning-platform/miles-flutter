@@ -8,10 +8,12 @@ class Peroid extends StatefulWidget {
   createState() => PeroidState();
 }
 
-class PeroidState extends State<Peroid> {
+class PeroidState extends State<Peroid> with WidgetsBindingObserver{
   Color _bgColor;
   Timer _timer;
   Duration _currentTime;
+  String _text = "不要切出当前页面";
+  int _counter;
 
   timeFlows() => Timer.periodic(Duration(seconds: 1), (Timer timer) {
         if (_currentTime == Duration(seconds: 1)) {
@@ -29,10 +31,58 @@ class PeroidState extends State<Peroid> {
   @override
   void initState() {
     super.initState();
+    // add observer
+    WidgetsBinding.instance.addObserver(this);
     _bgColor = agencyBgColor;
+    _counter = 0;
     // _currentTime = Duration(minutes: 25);
-    _currentTime = Duration(seconds: 5);
+    _currentTime = Duration(seconds: 20);
     _timer = timeFlows();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    if (state == AppLifecycleState.resumed){
+      switch (_counter) {
+        case 1:
+          _bgColor = Color.fromRGBO(193, 100, 100, 1);
+          _text = """不要切出当前页面
+当前已切出1次""";
+          _currentTime += Duration(seconds: 1);
+          _timer = timeFlows();
+          break;
+        case 2:
+          _bgColor = Color.fromRGBO(177, 127, 127, 1);
+          _text = """不要切出当前页面
+当前已切出2次""";
+          _currentTime += Duration(seconds: 1);
+          _timer = timeFlows();
+          break;
+        case 3:
+          Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+                builder: (BuildContext context) =>
+                    BeforeResult("failed")),
+            (route) => route == null
+          );
+          break;
+        default:
+          _counter = 1;
+          break;
+      }
+    }
+    if(state == AppLifecycleState.paused){
+      _timer.cancel();
+      _counter += 1;
+    }
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    WidgetsBinding.instance.removeObserver(this);
   }
 
   @override
@@ -60,8 +110,9 @@ class PeroidState extends State<Peroid> {
                       style: TextStyle(color: Colors.white, fontSize: 60),
                     ),
                     Text(
-                      "不要切出当前页面",
+                      _text,
                       style: TextStyle(color: Colors.white, fontSize: 18),
+                      textAlign: TextAlign.center,
                     )
                   ],
                 ),
