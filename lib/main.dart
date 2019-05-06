@@ -10,6 +10,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Miles Demo',
       theme: ThemeData(
+
         primarySwatch: Colors.blue,
       ),
       routes: routes(context),
