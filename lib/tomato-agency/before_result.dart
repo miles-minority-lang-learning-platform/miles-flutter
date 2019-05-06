@@ -57,6 +57,7 @@ class _BeforeResultState extends State<BeforeResult> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
+                        // 此处路由推至focus而非period是因为需要弹出三秒focus.dart再开始记时
                           builder: (BuildContext context) => Focus()));
                 },
                 color: Colors.red[200],

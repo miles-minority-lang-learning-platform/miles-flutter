@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../config.dart';
-import './period.dart';
+import './focus.dart';
 
 class Confirm extends StatefulWidget {
   final String mode;
@@ -119,7 +119,8 @@ class _ConfirmState extends State<Confirm> {
         child: RaisedButton(
           onPressed: () {
             Navigator.push(context,
-                MaterialPageRoute(builder: (BuildContext context) => Peroid()));
+            // 此处路由推至focus而非period是因为需要弹出三秒focus.dart再开始记时
+                MaterialPageRoute(builder: (BuildContext context) => Focus()));
           },
           color: Colors.red[200],
           textColor: Colors.white,
