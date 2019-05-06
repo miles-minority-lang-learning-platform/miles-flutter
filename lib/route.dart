@@ -8,16 +8,21 @@ import 'tomato-agency/failed.dart';
 import 'tomato-agency/gived_up.dart';
 import 'tomato-agency/succeeded.dart';
 import 'tomato-agency/result.dart';
+import 'login-and-register/login.dart';
+import 'login-and-register/portal.dart';
+import 'login-and-register/register-age.dart';
 
 routes(BuildContext context) => {
-      "/tomato": (context) => Agency(),
-      "/tomato/solo": (context) => ConfirmSoloPage(),
-      "/tomato/multi": (context) => ConfirmMultiPage(),
-      "/tomato/focus": (context) => KeepFocusPage(),
-      "/tomato/solo/period": (context) => TomatoPeriodSoloPage(),
-      "/tomato/failed": (context) => FailedPage(),
-      "/tomato/gived_up": (context) => GivedUp(),
-      "/tomato/succeeded": (context) => SucceededPage(),
-      "/tomato/result": (context) => ResultPage(),
-
-    };
+  "/tomato": (context) => AgencyPage(),
+  "/tomato/solo": (context) => ConfirmSoloPage(),
+  "/tomato/multi": (context) => ConfirmMultiPage(),
+  "/tomato/focus": (context) => KeepFocusPage(),
+  "/tomato/solo/period": (context) => TomatoPeriodSoloPage(),
+  "/tomato/failed": (context) => FailedPage(),
+  "/tomato/gived_up": (context) => GivedUp(),
+  "/tomato/succeeded": (context) => SucceededPage(),
+  "/tomato/result": (context) => ResultPage(),
+  "/login": (context) => LoginPage(),
+  "/login/register_age": (context) => RegisterAgePage(),
+  "/portal": (context) => PortalPage(),
+};

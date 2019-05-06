@@ -164,7 +164,7 @@ class Registerhead extends StatelessWidget {
           fontWeight: FontWeight.bold
         ),
       ),
-      padding: EdgeInsets.all(25.0),
+      padding: EdgeInsets.only(top: 25.0,bottom: 15.0),
     );
   }
 }
@@ -186,57 +186,57 @@ class Registerbody extends StatelessWidget {
         children: list.map((item) => Builder(
           builder: (context) {
             return Container(
-              child: Card(
-                elevation: 4.0,
-                child: Row(
-                  children: <Widget>[
-                    Container(
-                      child: Image.asset(
-                        item["img"],
-                        fit: BoxFit.contain,
-                        width: 80.0,
-                        height: 60.0,
+              child: GestureDetector(
+                onTap: () {
+                  if (pageId == '2') {
+                    Navigator.of(context).push(CustomRoute(RegisterLanguagePage(age: item['msg'])));
+                  }else if (pageId == '3') {
+                    Navigator.of(context).push(CustomRoute(RegisterExperiencePage(age: age,language: item['msg'])));
+                  }else if (pageId == '4') {
+                    // TODO: pass the parmas to api
+                    print("我是一个"+age+"的人，我想学"+ language +"。"+item['msg']+"。");
+                    Navigator.pushNamed(context, "/tomato");
+                  }
+                },
+                child: Card(
+                  elevation: 4.0,
+                  child: Row(
+                    children: <Widget>[
+                      Container(
+                        child: Image.asset(
+                          item["img"],
+                          fit: BoxFit.contain,
+                          width: 80.0,
+                          height: 60.0,
+                        ),
+                        padding: EdgeInsets.all(30.0),
                       ),
-                      padding: EdgeInsets.all(30.0),
-                    ),
-                    Expanded(
-                      child: Container(
-                        child: Text(
-                          item['msg'],
-                          style: TextStyle(
-                            fontSize: 16.0,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: "Segoe UI"
+                      Expanded(
+                        child: Container(
+                          child: Text(
+                            item['msg'],
+                            style: TextStyle(
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: "Segoe UI"
+                            ),
                           ),
                         ),
                       ),
+                      Container(
+                        child: Icon(Icons.chevron_right),
+                        margin: EdgeInsets.all(20.0),
+                      )
+                    ],
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(14.0),
                     ),
-                    Container(
-                      child: IconButton(
-                        icon: Icon(Icons.keyboard_arrow_right),
-                        onPressed:() {
-                          if (pageId == '2') {
-                            Navigator.of(context).push(CustomRoute(RegisterLanguagePage(age: item['msg'])));
-                          }else if (pageId == '3') {
-                            Navigator.of(context).push(CustomRoute(RegisterExperiencePage(age: age,language: item['msg'])));
-                          }else if (pageId == '4') {
-                            print("我是一个"+age+"的人，我想学"+ language +"。"+item['msg']+"。");
-                            Navigator.pushNamed(context, "/tomato");
-                          }
-                        },
-                        padding: EdgeInsets.all(5.0),
-                      ),
-                      margin: EdgeInsets.all(20.0),
-                    )
-                  ],
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(14.0),
                   ),
                 ),
               ),
-              margin: EdgeInsets.symmetric(horizontal: 20.0,vertical: 3.0),
+              margin: EdgeInsets.symmetric(horizontal: 25.0,vertical: 3.0),
             );
           },
         )).toList(),
