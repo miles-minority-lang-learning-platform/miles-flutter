@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import "../config.dart";
 import 'result.dart';
-import 'period.dart';
 import 'focus.dart';
 
 class BeforeResult extends StatefulWidget {
@@ -161,7 +160,7 @@ class _BeforeResultState extends State<BeforeResult> {
                       MaterialPageRoute(
                           builder: (BuildContext context) => ResultPage()));
                 },
-                color: Colors.grey,
+                color: Color.fromRGBO(112, 112, 112, 1),
                 textColor: Colors.white,
                 child: Text(
                   "查看结果",
@@ -194,7 +193,9 @@ class _BeforeResultState extends State<BeforeResult> {
   @override
   build(BuildContext context) => Scaffold(
         body: Container(
-          color: agencyBgColor,
+          color: widget.status == "failed"
+            ? Colors.grey
+            : agencyBgColor,
           child: Stack(
             children: <Widget>[
               _mainContent(),
