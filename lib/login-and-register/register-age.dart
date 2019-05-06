@@ -8,7 +8,7 @@ class RegisterAgePage extends StatelessWidget {
       body:Column(
         children: <Widget>[
           RegisterTipBar(schedule:1),
-          Registerhead(title:"请输入您的年龄"),
+          Registerhead(title:"请选择您的年龄"),
           Registerbody(
             pageId: "2",
             list: [
