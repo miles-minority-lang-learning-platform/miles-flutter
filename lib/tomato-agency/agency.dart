@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'confirm_solo.dart';
 import 'confirm_multi.dart';
 
 class AgencyPage extends StatelessWidget {
