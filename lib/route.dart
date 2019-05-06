@@ -13,7 +13,7 @@ import 'login-and-register/portal.dart';
 import 'login-and-register/register-age.dart';
 
 routes(BuildContext context) => {
-  "/tomato": (context) => AgencyPage(),
+  "/tomato": (context) => Agency(),
   "/tomato/solo": (context) => ConfirmSoloPage(),
   "/tomato/multi": (context) => ConfirmMultiPage(),
   "/tomato/focus": (context) => KeepFocusPage(),

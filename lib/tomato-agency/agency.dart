@@ -1,9 +1,4 @@
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
-import 'confirm_multi.dart';
-=======
->>>>>>> 81ef7499f078966cd2fab2a077b8a3687a95372f
-
 
 class Agency extends StatelessWidget {
   _topBar() => Container(
