@@ -18,11 +18,13 @@ class PeroidState extends State<Peroid> with WidgetsBindingObserver{
   timeFlows() => Timer.periodic(Duration(seconds: 1), (Timer timer) {
         if (_currentTime == Duration(seconds: 1)) {
           _timer.cancel();
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (BuildContext context) => BeforeResult("success")));
-        }
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(
+              builder: (BuildContext context) =>
+                  BeforeResult("success")),
+          (route) => route == null
+        );
         setState(() {
           _currentTime -= Duration(seconds: 1);
         });
