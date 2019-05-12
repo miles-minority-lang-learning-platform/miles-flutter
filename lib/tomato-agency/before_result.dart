@@ -54,11 +54,12 @@ class _BeforeResultState extends State<BeforeResult> {
               margin: EdgeInsets.only(bottom: 50),
               child: RaisedButton(
                 onPressed: () {
-                  Navigator.push(
+                  Navigator.pushAndRemoveUntil(
                       context,
                       MaterialPageRoute(
                         // 此处路由推至focus而非period是因为需要弹出三秒focus.dart再开始记时
-                          builder: (BuildContext context) => Focus()));
+                          builder: (BuildContext context) => Focus()),
+                          (route)=> route == null);
                 },
                 color: Colors.red[200],
                 textColor: Colors.white,

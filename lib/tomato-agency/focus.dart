@@ -22,7 +22,7 @@ class FocusState extends State<Focus> {
     // 如果不是默认的背景颜色，pop回上一层倒计时组件即可
     // ！important 写这个if条件是因为我不想写保持组件状态，好麻烦 :(
     if(widget.bgcolor != agencyBgColor){
-      _timer = Timer(const Duration(seconds: 3), () {
+      _timer = Timer(const Duration(seconds: 1), () {
         Navigator.of(context).pop();
       });
     }else{
@@ -30,7 +30,6 @@ class FocusState extends State<Focus> {
         Navigator.push(context, MaterialPageRoute(builder:(BuildContext context) => Peroid()));
       });
     }
-    
   }
 
   @override

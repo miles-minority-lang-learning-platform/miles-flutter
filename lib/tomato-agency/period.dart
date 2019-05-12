@@ -13,7 +13,7 @@ class PeroidState extends State<Peroid> with WidgetsBindingObserver{
   Color _bgColor;
   Timer _timer;
   Duration _currentTime;
-  // 设置text默认值
+  // 设置text默认值,切出计数器
   String _text = "不要切出当前页面";
   int _counter;
   
@@ -52,25 +52,28 @@ class PeroidState extends State<Peroid> with WidgetsBindingObserver{
     if (state == AppLifecycleState.resumed){
       switch (_counter) {
         case 1:
+          deactivate();
           _bgColor = Color.fromRGBO(193, 100, 100, 1);
           Navigator.push(context, 
             MaterialPageRoute(builder:(BuildContext context) =>Focus(bgcolor: _bgColor)));
           _text = """不要切出当前页面
 当前已切出1次""";
           _currentTime += Duration(seconds: 1);
-          _timer = timeFlows();
+          // _timer = timeFlows();
           break;
         case 2:
+          deactivate();
           _bgColor = Color.fromRGBO(177, 127, 127, 1);
           Navigator.push(context, 
             MaterialPageRoute(builder:(BuildContext context) =>Focus(bgcolor: _bgColor)));
           _text = """不要切出当前页面
 当前已切出2次""";
           _currentTime += Duration(seconds: 1);
-          _timer = timeFlows();
+          // _timer = timeFlows();
           break;
         case 3:
           // 第三次推出再返回，直接宣告失败，销毁当前页面并进行路由跳转
+          deactivate();
           Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(
@@ -85,7 +88,7 @@ class PeroidState extends State<Peroid> with WidgetsBindingObserver{
       }
     }
     if(state == AppLifecycleState.paused){
-      _timer.cancel();
+      deactivate();
       _counter += 1;
     }
   }

@@ -250,7 +250,7 @@ class CustomRoute extends PageRouteBuilder{
   final Widget widget;
   CustomRoute(this.widget)
     :super(
-      transitionDuration:const Duration(seconds:1),
+      transitionDuration:const Duration(milliseconds: 500),
       pageBuilder:(
         BuildContext context,
         Animation<double> animation1,
