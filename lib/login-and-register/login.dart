@@ -6,6 +6,7 @@ import 'register-age.dart';
 import 'dart:async';
 import 'dart:ui';
 
+// 登录页（包括Login Field部分和Other Login Methods部分）
 class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -21,51 +22,9 @@ class LoginPage extends StatelessWidget {
       ),
     );
   }
-
-  Widget _agreementDeclaration ()=> Container(
-    margin: EdgeInsets.symmetric(vertical: 30.0),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Text(
-          "登录注册代表同意",
-          style: TextStyle(
-            fontSize: 12.0,
-            color: Color.fromRGBO(112, 112, 112, 1),
-          )
-        ),
-        GestureDetector(
-          onTap: (){},
-          child: Text(
-            "用户协议",
-            style: TextStyle(
-              fontSize: 12.0,
-              color: Color.fromRGBO(88, 155, 207, 1),
-            )
-          ),
-        ),
-        Text(
-          "和",
-          style: TextStyle(
-            fontSize: 12.0,
-            color: Color.fromRGBO(112, 112, 112, 1),
-          )
-        ),
-        GestureDetector(
-          onTap: (){},
-          child: Text(
-            "隐私政策",
-            style: TextStyle(
-              fontSize: 12.0,
-              color: Color.fromRGBO(88, 155, 207, 1),
-            )
-          ),
-        )
-      ]
-    )
-  );
 }
 
+// 登录背景以及登录表单部分
 class LoginField extends StatefulWidget {
   @override
   _LoginFieldState createState() => _LoginFieldState();
@@ -227,6 +186,7 @@ class _LoginFieldState extends State<LoginField> {
   );
 }
 
+// 社交合作账号登录方式
 class OtherLoginMethods extends StatelessWidget {
   final List _loginMethod = [
     {
@@ -265,12 +225,12 @@ class OtherLoginMethods extends StatelessWidget {
               Positioned(
                 left: 75.0,
                 top: 15,
-                child: positionedLine()
+                child: _positionedLine()
               ),
               Positioned(
                 right: 75.0,
                 top: 15,
-                child: positionedLine()
+                child: _positionedLine()
               ),
             ]
           ),
@@ -304,7 +264,8 @@ class OtherLoginMethods extends StatelessWidget {
     );
   }
 
-  Widget positionedLine() => Container(
+  // 社交账号左右两侧的横线
+  Widget _positionedLine() => Container(
     height: 1,
     width: 20,
     decoration: BoxDecoration(
@@ -315,46 +276,38 @@ class OtherLoginMethods extends StatelessWidget {
     ),
   );
 
+  // 用户协议和隐私政策声明部分
   Widget _agreementDeclaration ()=> Container(
     margin: EdgeInsets.only(bottom: 30.0,top: 5.0),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        Text(
-          "登录注册代表同意",
-          style: TextStyle(
-            fontSize: 12.0,
-            color: Color.fromRGBO(112, 112, 112, 1),
-          )
-        ),
-        GestureDetector(
-          onTap: (){},
-          child: Text(
-            "用户协议",
-            style: TextStyle(
-              fontSize: 12.0,
-              color: Color.fromRGBO(88, 155, 207, 1),
-            )
-          ),
-        ),
-        Text(
-          "和",
-          style: TextStyle(
-            fontSize: 12.0,
-            color: Color.fromRGBO(112, 112, 112, 1),
-          )
-        ),
-        GestureDetector(
-          onTap: (){},
-          child: Text(
-            "隐私政策",
-            style: TextStyle(
-              fontSize: 12.0,
-              color: Color.fromRGBO(88, 155, 207, 1),
-            )
-          ),
-        )
+        __normalText("登录注册代表同意"),
+        __gestureDetectorText("用户协议", LoginPage()),
+        __normalText("和"),
+        __gestureDetectorText("隐私政策", LoginPage())
       ]
     )
+  );
+
+  // 灰色字体
+  Widget __normalText(String text)=> Text(
+    text,
+    style: TextStyle(
+      fontSize: 12.0,
+      color: Color.fromRGBO(112, 112, 112, 1),
+    ),
+  );
+
+  // 用户可以点击跳转路由的蓝色字体
+  Widget __gestureDetectorText(String text, Widget widget)=> GestureDetector(
+    onTap: (){},
+    child: Text(
+      text,
+      style: TextStyle(
+        fontSize: 12.0,
+        color: Color.fromRGBO(88, 155, 207, 1),
+      )
+    ),
   );
 }
