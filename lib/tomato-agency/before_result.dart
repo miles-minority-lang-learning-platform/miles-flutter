@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import "../config.dart";
 import 'result.dart';
-import 'period.dart';
 import 'focus.dart';
 
 class BeforeResult extends StatefulWidget {
@@ -55,10 +54,12 @@ class _BeforeResultState extends State<BeforeResult> {
               margin: EdgeInsets.only(bottom: 50),
               child: RaisedButton(
                 onPressed: () {
-                  Navigator.push(
+                  Navigator.pushAndRemoveUntil(
                       context,
                       MaterialPageRoute(
-                          builder: (BuildContext context) => Focus()));
+                        // 此处路由推至focus而非period是因为需要弹出三秒focus.dart再开始记时
+                          builder: (BuildContext context) => Focus()),
+                          (route)=> route == null);
                 },
                 color: Colors.red[200],
                 textColor: Colors.white,
@@ -161,7 +162,7 @@ class _BeforeResultState extends State<BeforeResult> {
                       MaterialPageRoute(
                           builder: (BuildContext context) => ResultPage()));
                 },
-                color: Colors.grey,
+                color: Color.fromRGBO(112, 112, 112, 1),
                 textColor: Colors.white,
                 child: Text(
                   "查看结果",
@@ -194,7 +195,9 @@ class _BeforeResultState extends State<BeforeResult> {
   @override
   build(BuildContext context) => Scaffold(
         body: Container(
-          color: agencyBgColor,
+          color: widget.status == "failed"
+            ? Colors.grey
+            : agencyBgColor,
           child: Stack(
             children: <Widget>[
               _mainContent(),
