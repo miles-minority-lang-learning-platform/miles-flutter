@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'route.dart';
-import 'login-and-register/login_re.dart';
+import 'login-and-register/login.dart';
 
 void main() => runApp(MyApp());
 
