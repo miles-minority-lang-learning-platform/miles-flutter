@@ -1,27 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:miles/tomato-sharing/publisher.dart';
 
 class Moment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("德语"),
+        title: Text(
+          "德语",
+          style: TextStyle(
+            color: Colors.black
+          ),
+        ),
         centerTitle: true,
+        backgroundColor: Colors.white,
+        elevation: 1,
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.search),
+            color: Colors.black,
             onPressed: (){},
           ),
           IconButton(
             icon: Icon(Icons.add),
-            onPressed: (){},
+            color: Colors.black,
+            onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=> Publisher()));
+            },
           ),
         ],
       ),
       body: ListView(
         children: <Widget>[
           MomentSharing(
-            imgUrl: "assets/images/treeman.png",
+            imgUrl: "assets/images/RonYou.png",
             name: "Ron You",
             level: "高三",
             title: "德语笔记",
@@ -30,7 +42,25 @@ class Moment extends StatelessWidget {
             loving: 21,
           ),
           MomentSharing(
-            imgUrl: "assets/images/treeman.png",
+            imgUrl: "assets/images/weekbin.png",
+            name: "Weekbin",
+            level: "大一",
+            title: "黑魔仙笔记",
+            hold: 15,
+            sharing: 36,
+            loving: 21,
+          ),
+          MomentSharing(
+            imgUrl: "assets/images/weekbin.png",
+            name: "Weekbin",
+            level: "大一",
+            title: "黑魔仙笔记",
+            hold: 15,
+            sharing: 36,
+            loving: 21,
+          ),
+          MomentSharing(
+            imgUrl: "assets/images/weekbin.png",
             name: "Weekbin",
             level: "大一",
             title: "黑魔仙笔记",
@@ -84,7 +114,7 @@ class _MomentSharingState extends State<MomentSharing> {
   _userInform(imgUrl,name,level,title)=>Container(
     height: 75.0,
     child:Padding(
-      padding: const EdgeInsets.all(10.0),
+      padding: const EdgeInsets.symmetric(vertical: 8.0,horizontal: 20.0),
       child: Row(
         children: <Widget>[
           Image.asset(imgUrl),
